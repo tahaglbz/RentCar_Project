@@ -14,7 +14,7 @@ modal.classList.remove("open");
 })
 
 
-const myTimeout = setTimeout(popUpOpener, 5000);
+const myTimeout = setTimeout(popUpOpener, time);
 
 
 function popUpOpener(){
