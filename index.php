@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,9 +11,9 @@
 
 <body>
     <header>
-    <?php
-      include_once "source/navbar.php"; 
-     ?>
+        <?php
+        include_once "source/navbar.php";
+        ?>
     </header>
 
 
@@ -35,7 +34,7 @@
     </div>
 
     </main>
-    <script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

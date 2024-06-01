@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
@@ -31,7 +32,7 @@
             } else {
                 $stmt->bind_param("sss", $_POST["username"], $_POST["email"], $password_hash);
                 if ($stmt->execute()) {
-                    header("Location: /index.html");
+                    header("Location: /login-signup/login_page.php");
                     exit;
                 } else {
                     if ($mysqli->errno === 1062) {
