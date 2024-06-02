@@ -1,6 +1,6 @@
 <?php
 // eğer portu değiştirdisen xamp kurlumunda bu şekilde kodu değiştir  ->  "mysql:host=localhost;port=3307;dbname=user_rentcar"
-$dsn = "mysql:host=localhost;dbname=user_rentcar";
+$dsn = "mysql:host=localhost;dbname=users_rentcar";
 
 $dbusername = "root";
 

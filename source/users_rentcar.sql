@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3307
--- Üretim Zamanı: 02 Haz 2024, 16:38:05
+-- Üretim Zamanı: 02 Haz 2024, 19:47:39
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Veritabanı: `user_rentcar`
+-- Veritabanı: `users_rentcar`
 --
 
 -- --------------------------------------------------------
