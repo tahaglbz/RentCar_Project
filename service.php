@@ -1,4 +1,12 @@
+<?php require"/source/serviceDb.php";?>
+  
+<?php
+$sorgu = $pdo -> query("SELECT * cars");
 
+print_r($sorgu);
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +26,11 @@
 
 ?>
 </header>
-<h1>aracını seç  </h1>
-<p>This is a paragraph.</p>
+
+
+
+
+
 
 </body>
 </html>

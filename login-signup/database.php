@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "users_rentcar";
 $username = "root";
-$password = "";
+$password = "123456";
 
 $mysqli = new mysqli(
     hostname: $host,
