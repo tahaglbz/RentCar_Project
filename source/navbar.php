@@ -1,3 +1,20 @@
+<?php
+// Oturumu başlat
+
+// Eğer "logout" parametresi alınırsa oturumu sonlandır
+if (isset($_GET['logout'])) {
+    // Oturumu sonlandır (tüm oturum değişkenlerini temizler)
+    session_unset();
+
+    // Oturumu yok eder (sunucudaki oturum dosyasını siler)
+    session_destroy();
+
+    // Kullanıcıyı "index.php" sayfasına yönlendirme
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,8 +30,6 @@
     <header>
         <nav>
             <ul class="menu">
-
-
                 <li class="marka"><a href="index.php"><img src="image/car.png" alt="car Icon"></a></li>
                 <li><a href="#about">hakkımızda</a></li>
                 <li><a href="service.php">kiralama</a></li>
@@ -24,14 +39,14 @@
                         <img src="image/user.png" alt="">
                     </button>
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="profile_page.php">Profile</a></li>
                         <li><a class="dropdown-item" href="login-signup/login_page.php">Log In</a></li>
                         <li><a class="dropdown-item" href="login-signup/signup_page.php">Sign Up</a></li>
+                        <li><a href="?logout">Log Out</a></li>
                     </ul>
                 </div>
             </ul>
-
         </nav>
-
     </header>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

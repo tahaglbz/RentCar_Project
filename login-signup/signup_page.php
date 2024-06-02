@@ -38,7 +38,7 @@
                     if ($mysqli->errno === 1062) {
                         echo "<p>This email already exists</p>";
                     } else {
-                        echo "<p>db errorı: " . $mysqli->error . " (" . $mysqli->errno . ")</p>";
+                        echo "<p>db error: " . $mysqli->error . " (" . $mysqli->errno . ")</p>";
                     }
                 }
             }

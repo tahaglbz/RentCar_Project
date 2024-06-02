@@ -1,12 +1,14 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-if (isset($_SESSION["user_id"])) {
-    require __DIR__ . "/login-signup/database.php";
+// Veritabanı bağlantısını dahil et
+require __DIR__ . "/login-signup/database.php";
 
+// Kullanıcı oturumu kontrolü
+if (isset($_SESSION["user_id"])) {
     $sql = "SELECT * FROM users WHERE id = ?";
     $stmt = $mysqli->prepare($sql);
+
     if ($stmt) {
         $stmt->bind_param("i", $_SESSION["user_id"]);
         $stmt->execute();
@@ -15,15 +17,16 @@ if (isset($_SESSION["user_id"])) {
         if ($result) {
             $user = $result->fetch_assoc();
         } else {
-            echo "<p>Database error</p>";
+            echo "<p>Database error: Unable to fetch user data.</p>";
         }
         $stmt->close();
     } else {
-        echo "<p>Database error</p>";
+        echo "<p>Database error: Unable to prepare statement.</p>";
     }
 } else {
-    header("Location: /login_page.php");
-    exit;
+    // Kullanıcı oturumu yoksa giriş sayfasına yönlendir
+    // header("Location: /login_page.php");
+    // exit;
 }
 ?>
 
