@@ -1,12 +1,6 @@
-<?php require"/source/serviceDb.php";?>
+<?php require"source/serviceDb.php";?>
   
-<?php
-$sorgu = $pdo -> query("SELECT * cars");
 
-print_r($sorgu);
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +20,70 @@ print_r($sorgu);
 
 ?>
 </header>
+
+<?php
+
+try {
+   
+    $stmt = $pdo->prepare("SELECT * FROM cars WHERE onSale = 1");
+    $stmt->execute();
+
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+  
+    foreach ($results as $row) {
+        echo "<div style='border: 1px solid black; margin-bottom: 10px; margin-left : 10px; padding: 10px; padding-left: 35px; position: relative; width: 100%; height: 220px;'>";
+        
+
+    if (!empty($row['image'])) {
+        $imageData = base64_encode($row['image']);
+        echo "<img src='data:image/jpeg;base64,{$imageData}' alt='Araba Resmi' style='float: left; width: 200px; height: 200px; display: flex;  align-items: center; justify-content: center;'>";
+    } else {
+            echo "<div style='float: left; width: 200px; height: 200px; background-color: #ccc; display: flex; align-items: center; justify-content: center;'>";
+            echo "Resim Yok";
+            echo "</div>";
+        }
+
+        echo "<div style='margin-left: 220px;'>";
+        echo "<div><strong>İsim Model:</strong> " . htmlspecialchars($row['modal']) . "</div>";
+        echo "<div><strong>Vites:</strong> " . htmlspecialchars($row['gearshift']) . "</div>";
+        echo "<div><strong>Yakıt:</strong> " . htmlspecialchars($row['oil']) . "</div>";
+        echo "<div><strong>Kilometre:</strong> " . htmlspecialchars($row['mileage']) . "</div>";
+        echo "<div><strong>Üretim Yılı:</strong> " . htmlspecialchars($row['producitonage']) . "</div>";
+        echo "</div>";
+
+       
+        echo "<button style='position: absolute; bottom: 10px; right: 10px;' onclick='showPrice(" . htmlspecialchars($row['price']) . ")'>";
+        echo htmlspecialchars($row['price']) . " TL";
+        echo "</button>";
+
+        echo "</div>";
+    }
+
+} catch (PDOException $e) {
+    echo "Verileri çekme başarısız: " . $e->getMessage();
+}
+
+?>
+<script>
+function showPrice(price) {
+    alert("Fiyat: " + price + " TL");
+}
+</script>
+
+<div>
+<div>
+
+
+</div>
+<div>
+
+
+</div>
+
+
+
+</div>
 
 
 
