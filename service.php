@@ -53,7 +53,7 @@ try {
         echo "</div>";
 
        
-        echo "<button style='position: absolute; bottom: 10px; right: 10px;' onclick='showPrice(" . htmlspecialchars($row['price']) . ")'>";
+        echo "<button style='position: absolute; bottom: 10px; right: 10px;' >";
         echo htmlspecialchars($row['price']) . " TL";
         echo "</button>";
 
@@ -66,31 +66,9 @@ try {
 
 ?>
 <script>
-function showPrice(price) {
-    alert("Fiyat: " + price + " TL");
-}
+
 </script>
-
-<div>
-<div>
-
-
-</div>
-<div>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
 
 
 </body>
 </html>
-
-
