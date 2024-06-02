@@ -2,10 +2,8 @@
 $is_invalid = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Doğru require ifadesi
     require __DIR__ . "/database.php";
 
-    // Hazırlıklı ifadeler kullanarak SQL enjeksiyonunu önleyin
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $mysqli->prepare($sql);
     if ($stmt) {
@@ -16,27 +14,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($result) {
             $user = $result->fetch_assoc();
             if ($user) {
-                // Şifreyi doğrulama
                 if (password_verify($_POST["password"], $user["password_hash"])) {
                     session_start();
                     $_SESSION["user_id"] = $user["id"];
                     header("Location: /index.php");
                     exit;
                 } else {
-                    echo "<p>Invalid password</p>";
+                    $is_invalid = true;
                 }
             } else {
-                echo "<p>User not found</p>";
+                $is_invalid = true;
             }
         } else {
-            echo "<p>Database error</p>";
+            $is_invalid = true;
         }
         $stmt->close();
     } else {
-        echo "<p>Database error</p>";
+        $is_invalid = true;
     }
-
-    $is_invalid = true;
 }
 ?>
 
@@ -51,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
+
 
     <h1>LOG IN</h1>
     <?php if ($is_invalid): ?>
