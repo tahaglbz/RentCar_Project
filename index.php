@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Veritabanı bağlantısını dahil et
 require __DIR__ . "/login-signup/database.php";
 
@@ -46,15 +45,16 @@ if (isset($_SESSION["user_id"])) {
     </header>
 
     <div class="promotion" id="promotion">
-        <div class="promotion-inner">
-            <h2>KAPTIN FIRSATLARI</h2>
-            <p>İlk kiralamadan sonra ikinci kiralama %40 indirimli. SAKIN KAÇIRMA!!!</p>
-            <div>
-                <button>Beni kampanyaya götür</button>
-                <button id="closeButton">İlgilenmiyorum</button>
-            </div>
+    <div class="promotion-inner">
+        <h2>KAPTIN FIRSATLARI</h2>
+        <p>İlk kiralamada %40 indirimli. SAKIN KAÇIRMA!!!</p>
+        <div>
+            <button><a href="service.php?couponCode=POPUPDİSCOUNT" class="promo-link">Beni kampanyaya götür</a></button>
+          
+            <button id="closeButton">İlgilenmiyorum</button>
         </div>
     </div>
+</div>
 
     <?php if (isset($user)): ?>
         <h1>Welcome, <?= htmlspecialchars($user["username"]); ?>!</h1>
