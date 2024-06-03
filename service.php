@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,16 +22,16 @@
 
     <?php
     $discount = 0;
-    if(!empty($_GET['couponCode']) ){
-        $couponCode =$_GET['couponCode'];
+    if (!empty($_GET['couponCode'])) {
+        $couponCode = $_GET['couponCode'];
         try {
             $distmt = $pdo->prepare("SELECT discountRate FROM cupons WHERE cuponCode = :couponCode");
             $distmt->bindParam(':couponCode', $couponCode);
             $distmt->execute();
-    
+
             if ($distmt->rowCount() > 0) {
                 $coupon = $distmt->fetch(PDO::FETCH_ASSOC);
-                $discount = $coupon['discountRate'] / 100; 
+                $discount = $coupon['discountRate'] / 100;
                 echo "Kupon kodu geçerli! İndirim oranı: " . ($discount * 100) . "%<br>";
             } else {
                 echo "Geçersiz kupon kodu!<br>";
@@ -40,18 +41,18 @@
         }
 
     }
-     
+
     if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['couponCode'])) {
         $couponCode = $_POST['couponCode'];
         try {
-         
+
             $distmt = $pdo->prepare("SELECT discountRate FROM cupons WHERE cuponCode = :couponCode");
             $distmt->bindParam(':couponCode', $couponCode);
             $distmt->execute();
-    
+
             if ($distmt->rowCount() > 0) {
                 $coupon = $distmt->fetch(PDO::FETCH_ASSOC);
-                $discount = $coupon['discountRate'] / 100; 
+                $discount = $coupon['discountRate'] / 100;
                 echo "Kupon kodu geçerli! İndirim oranı: " . ($discount * 100) . "%<br>";
             } else {
                 echo "Geçersiz kupon kodu!<br>";
@@ -59,10 +60,10 @@
         } catch (PDOException $e) {
             echo "Kupon kodu kontrol edilirken hata oluştu: " . $e->getMessage();
         }
-       
+
     }
 
-  
+
 
     try {
         $stmt = $pdo->prepare("SELECT * FROM cars WHERE onSale = 1");
@@ -108,4 +109,5 @@
     }
     ?>
 </body>
+
 </html>
