@@ -32,15 +32,18 @@ $current_page = basename(__FILE__);
                     <th>ID</th>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>Balance</th>
                     <th>Actions</th>
                 </tr>
                 <?php
-                $result = $mysqli->query("SELECT id, username, email FROM users");
+                $result = $mysqli->query("SELECT id, username, email, balance FROM users");
+                
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
                             <td>{$row['id']}</td>
                             <td>{$row['username']}</td>
                             <td>{$row['email']}</td>
+                            <td>{$row['balance']}</td>
                             <td>
                                 <a href='edit_user.php?id={$row['id']}'>Edit</a>
                                 <a href='delete_user.php?id={$row['id']}' onclick='return confirm(\"Are you sure?\")'>Delete</a>

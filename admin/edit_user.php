@@ -9,9 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
     $id = $_POST['id'];
     $username = $_POST['username'];
     $email = $_POST['email'];
+    $balance = $_POST['balance'];
 
-    $stmt = $mysqli->prepare("UPDATE users SET username = ?, email = ? WHERE id = ?");
-    $stmt->bind_param("ssi", $username, $email, $id);
+    $stmt = $mysqli->prepare("UPDATE users SET username = ?, email = ?, balance = ? WHERE id = ?");
+    $stmt->bind_param("ssdi", $username, $email,$balance, $id);
 
     if ($stmt->execute()) {
         echo "User updated successfully!";
@@ -23,10 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
     $mysqli->close();
 } else if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $stmt = $mysqli->prepare("SELECT username, email FROM users WHERE id = ?");
+    $stmt = $mysqli->prepare("SELECT username, email, balance FROM users WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $stmt->bind_result($username, $email);
+    $stmt->bind_result($username, $email, $balance );
     $stmt->fetch();
     $stmt->close();
 } else {
@@ -55,10 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
         <div class="card">
             <form action="edit_user.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
+
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="<?php echo $username; ?>">
+
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" value="<?php echo $email; ?>">
+
+                <label for="balance">Balance:</label>
+                <input type="number" id="balance" name="balance" step="0.1" value="<?php echo $balance; ?>" required>
+
                 <button type="submit">Update User</button>
             </form>
         </div>
