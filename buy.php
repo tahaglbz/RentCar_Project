@@ -1,15 +1,23 @@
-<?php require "source/serviceDb.php"; ?>
+<?php
+session_start();
+require "source/serviceDb.php";
 
+if (!isset($_SESSION['user_id'])) {
+    echo "Please log in to proceed.";
+    exit;
+}
+
+$userId = $_SESSION['user_id'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Car</title>
     <link rel="stylesheet" href="service.css">
 </head>
-
 <body>
     <header>
         <?php include_once "source/navbar.php"; ?>
@@ -93,5 +101,4 @@
     }
     ?>
 </body>
-
 </html>

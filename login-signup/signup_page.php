@@ -32,7 +32,7 @@
             } else {
                 $stmt->bind_param("sss", $_POST["username"], $_POST["email"], $password_hash);
                 if ($stmt->execute()) {
-                    header("Location: /login-signup/login_page.php");
+                    header("Location: login_page.php");
                     exit;
                 } else {
                     if ($mysqli->errno === 1062) {

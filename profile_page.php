@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addBalance"])) {
         $stmt->bind_param("di", $newBalance, $userId);
         if ($stmt->execute()) {
 
-            header("Location: /profile_page.php");
+            header("Location: profile_page.php");
             exit;
         } else {
             echo "<p>Database error: Unable to update balance.</p>";
