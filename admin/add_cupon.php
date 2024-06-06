@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("isii", $cuponId, $cuponCode, $discountRate, $validity);
 
     if ($stmt->execute()) {
-        echo "Car added successfully!";
+        echo "Cupon added successfully!";
     } else {
-        echo "Error adding car: " . $mysqli->error;
+        echo "Error adding cupon: " . $mysqli->error;
     }
 
     $stmt->close();
