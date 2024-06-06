@@ -22,30 +22,9 @@
 
     <?php
     $discount = 0;
-    if (!empty($_GET['couponCode'])) {
-        $couponCode = $_GET['couponCode'];
-        try {
-            $distmt = $pdo->prepare("SELECT discountRate FROM cupons WHERE cuponCode = :couponCode");
-            $distmt->bindParam(':couponCode', $couponCode);
-            $distmt->execute();
-
-            if ($distmt->rowCount() > 0) {
-                $coupon = $distmt->fetch(PDO::FETCH_ASSOC);
-                $discount = $coupon['discountRate'] / 100;
-                echo "Kupon kodu geçerli! İndirim oranı: " . ($discount * 100) . "%<br>";
-            } else {
-                echo "Geçersiz kupon kodu!<br>";
-            }
-        } catch (PDOException $e) {
-            echo "Kupon kodu kontrol edilirken hata oluştu: " . $e->getMessage();
-        }
-
-    }
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['couponCode'])) {
+    if (!empty($_POST['couponCode'])) {
         $couponCode = $_POST['couponCode'];
         try {
-
             $distmt = $pdo->prepare("SELECT discountRate FROM cupons WHERE cuponCode = :couponCode");
             $distmt->bindParam(':couponCode', $couponCode);
             $distmt->execute();
@@ -60,13 +39,10 @@
         } catch (PDOException $e) {
             echo "Kupon kodu kontrol edilirken hata oluştu: " . $e->getMessage();
         }
-
     }
 
-
-
     try {
-        $stmt = $pdo->prepare("SELECT * FROM cars WHERE onSale = 1");
+        $stmt = $pdo->prepare("SELECT carId, modal, gearshift, oil, mileage, producitonage, price, image FROM cars WHERE onSale = 1");
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -79,7 +55,7 @@
 
             if (!empty($row['image'])) {
                 $imageData = base64_encode($row['image']);
-                echo "<img src='data:image/jpeg;base64,{$imageData}' alt='Araba Resmi' style='float: left; width: 200px; height: 200px; display: flex;  align-items: center; justify-content: center;'>";
+                echo "<img src='data:image/jpeg;base64,{$imageData}' alt='Araba Resmi' style='float: left; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center;'>";
             } else {
                 echo "<div style='float: left; width: 200px; height: 200px; background-color: #ccc; display: flex; align-items: center; justify-content: center;'>";
                 echo "Resim Yok";
@@ -94,6 +70,7 @@
             echo "<div><strong>Üretim Yılı:</strong> " . htmlspecialchars($row['producitonage']) . "</div>";
             echo "</div>";
 
+            echo "<a href='buy.php?carId={$row['carId']}&discount={$discount}'>";
             echo "<button style='position: absolute; bottom: 10px; right: 10px;'>";
             if ($discount > 0) {
                 echo "<del>{$originalPrice} TL</del> {$discountedPrice} TL";
@@ -101,6 +78,7 @@
                 echo "{$originalPrice} TL";
             }
             echo "</button>";
+            echo "</a>";
 
             echo "</div>";
         }
