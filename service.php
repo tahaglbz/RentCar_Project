@@ -22,6 +22,27 @@
 
     <?php
     $discount = 0;
+    if (!empty($_GET['couponCode'])) {
+        $couponCode = $_GET['couponCode'];
+        try {
+            $distmt = $pdo->prepare("SELECT discountRate FROM cupons WHERE cuponCode = :couponCode");
+            $distmt->bindParam(':couponCode', $couponCode);
+            $distmt->execute();
+
+            if ($distmt->rowCount() > 0) {
+                $coupon = $distmt->fetch(PDO::FETCH_ASSOC);
+                $discount = $coupon['discountRate'] / 100;
+                echo "Kupon kodu geçerli! İndirim oranı: " . ($discount * 100) . "%<br>";
+            } else {
+                echo "Geçersiz kupon kodu!<br>";
+            }
+        } catch (PDOException $e) {
+            echo "Kupon kodu kontrol edilirken hata oluştu: " . $e->getMessage();
+        }
+
+    }
+
+
     if (!empty($_POST['couponCode'])) {
         $couponCode = $_POST['couponCode'];
         try {

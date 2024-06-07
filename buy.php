@@ -12,12 +12,14 @@ $userId = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Car</title>
     <link rel="stylesheet" href="service.css">
 </head>
+
 <body>
     <header>
         <?php include_once "source/navbar.php"; ?>
@@ -74,12 +76,19 @@ $userId = $_SESSION['user_id'];
                 if (isset($_POST['calculate']) && !empty($_POST['rentalDays'])) {
                     $rentalDays = intval($_POST['rentalDays']);
                     $totalDailyPrice = $oilPrice * $rentalDays;
-                    $finalDiscountedPrice = $discountedPrice ?? $originalPrice;
-                    $finalPrice = $finalDiscountedPrice + $totalDailyPrice;
+                    $discountedPrice = $oilPrice * $rentalDays * (1 - $discount);
+                    $finalDiscountedPrice = $originalPrice * (1 - $discount);
+                    if (!empty($discount)) {
+                        $finalPrice = $finalDiscountedPrice +  $discountedPrice;
+                    } else {
+                        $finalPrice = $finalDiscountedPrice + $totalDailyPrice;
+                    }
+
 
                     echo "<p><strong>Taban Fiyat:</strong> {$finalDiscountedPrice} TL</p>";
-                    echo "<p><strong>Yağ Tipi Fiyatı:</strong> {$oilPrice} TL</p>";
+                    echo "<p><strong>Günlük Fiyatı:</strong> {$oilPrice} TL</p>";
                     echo "<p><strong>Toplam Günlük Fiyat:</strong> {$totalDailyPrice} TL ({$rentalDays} gün için)</p>";
+                    echo "<p><strong>İndirim Uygulanmış Toplam Günlük Fiyat:</strong> {$discountedPrice} TL ({$rentalDays} gün için)</p>";
                     echo "<p><strong>Son Fiyat:</strong> {$finalPrice} TL</p>";
 
                     // Form for confirming purchase
@@ -101,4 +110,5 @@ $userId = $_SESSION['user_id'];
     }
     ?>
 </body>
+
 </html>
