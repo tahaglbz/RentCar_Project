@@ -33,8 +33,8 @@ $userId = $_SESSION['user_id'];
         // Define additional prices based on the oil type
         $oilPrices = [
             'benzin' => 100,
-            'kurşunsuz' => 80,
-            'redstone' => 120
+            'dizel' => 80,
+            'elektrik' => 120
         ];
 
         try {
@@ -79,7 +79,7 @@ $userId = $_SESSION['user_id'];
                     $discountedPrice = $oilPrice * $rentalDays * (1 - $discount);
                     $finalDiscountedPrice = $originalPrice * (1 - $discount);
                     if (!empty($discount)) {
-                        $finalPrice = $finalDiscountedPrice +  $discountedPrice;
+                        $finalPrice = $finalDiscountedPrice + $discountedPrice;
                     } else {
                         $finalPrice = $finalDiscountedPrice + $totalDailyPrice;
                     }
