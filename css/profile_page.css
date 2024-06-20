@@ -1,0 +1,121 @@
+/* profile_page.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.card {
+    width: 60%;
+    margin: 2rem auto;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    background-color: white;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: .75rem 1.25rem;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-item {
+    margin: 0 .5rem;
+}
+
+.nav-link {
+    color: #495057;
+    cursor: pointer;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    text-decoration: none;
+}
+
+.nav-link.active, .nav-link:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-title {
+    margin-bottom: .75rem;
+    font-size: 1.5rem;
+}
+
+.card-text {
+    margin-bottom: 1.25rem;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    text-decoration: none;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.d-none {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-dark {
+    color: #343a40 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+input[type="number"], input[type="password"] {
+    padding: .5rem;
+    margin: .5rem 0;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    width: calc(100% - 1rem);
+}
+
+#passwordError {
+    margin-top: .5rem;
+    font-size: .875rem;
+}

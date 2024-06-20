@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
-    <link rel="stylesheet" href="service.css">
+    <link rel="stylesheet" href="css/service.css">
 </head>
 
 <body>
@@ -20,27 +20,31 @@
         <button id="submition" type="submit">Gönder</button>
     </form>
 
-    <?php
-    $discount = 0;
-    if (!empty($_POST['couponCode'])) {
-        $couponCode = $_POST['couponCode'];
-        try {
-            $distmt = $pdo->prepare("SELECT discountRate FROM cupons WHERE cuponCode = :couponCode");
-            $distmt->bindParam(':couponCode', $couponCode);
-            $distmt->execute();
+    <div id="coupon-message">
+        <?php
+        $discount = 0;
+        if (!empty($_POST['couponCode'])) {
+            $couponCode = $_POST['couponCode'];
+            try {
+                $distmt = $pdo->prepare("SELECT discountRate FROM cupons WHERE cuponCode = :couponCode");
+                $distmt->bindParam(':couponCode', $couponCode);
+                $distmt->execute();
 
-            if ($distmt->rowCount() > 0) {
-                $coupon = $distmt->fetch(PDO::FETCH_ASSOC);
-                $discount = $coupon['discountRate'] / 100;
-                echo "Kupon kodu geçerli! İndirim oranı: " . ($discount * 100) . "%<br>";
-            } else {
-                echo "Geçersiz kupon kodu!<br>";
+                if ($distmt->rowCount() > 0) {
+                    $coupon = $distmt->fetch(PDO::FETCH_ASSOC);
+                    $discount = $coupon['discountRate'] / 100;
+                    echo "Kupon kodu geçerli! İndirim oranı: " . ($discount * 100) . "%<br>";
+                } else {
+                    echo "Geçersiz kupon kodu!<br>";
+                }
+            } catch (PDOException $e) {
+                echo "Kupon kodu kontrol edilirken hata oluştu: " . $e->getMessage();
             }
-        } catch (PDOException $e) {
-            echo "Kupon kodu kontrol edilirken hata oluştu: " . $e->getMessage();
         }
-    }
+        ?>
+    </div>
 
+    <?php
     try {
         $stmt = $pdo->prepare("SELECT carId, modal, gearshift, oil, mileage, producitonage, price, image FROM cars WHERE onSale = 1");
         $stmt->execute();
@@ -51,18 +55,16 @@
             $originalPrice = $row['price'];
             $discountedPrice = $originalPrice - ($originalPrice * $discount);
 
-            echo "<div style='border: 1px solid black; margin-bottom: 10px; margin-left : 10px; padding: 10px; padding-left: 35px; position: relative; width: 100%; height: 220px;'>";
+            echo "<div class='car-listing'>";
 
             if (!empty($row['image'])) {
                 $imageData = base64_encode($row['image']);
-                echo "<img src='data:image/jpeg;base64,{$imageData}' alt='Araba Resmi' style='float: left; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center;'>";
+                echo "<img src='data:image/jpeg;base64,{$imageData}' alt='Araba Resmi'>";
             } else {
-                echo "<div style='float: left; width: 200px; height: 200px; background-color: #ccc; display: flex; align-items: center; justify-content: center;'>";
-                echo "Resim Yok";
-                echo "</div>";
+                echo "<div class='no-image'>Resim Yok</div>";
             }
 
-            echo "<div style='margin-left: 220px;'>";
+            echo "<div class='car-details'>";
             echo "<div><strong>İsim Model:</strong> " . htmlspecialchars($row['modal']) . "</div>";
             echo "<div><strong>Vites:</strong> " . htmlspecialchars($row['gearshift']) . "</div>";
             echo "<div><strong>Yakıt:</strong> " . htmlspecialchars($row['oil']) . "</div>";
@@ -71,7 +73,7 @@
             echo "</div>";
 
             echo "<a href='buy.php?carId={$row['carId']}&discount={$discount}'>";
-            echo "<button style='position: absolute; bottom: 10px; right: 10px;'>";
+            echo "<button>";
             if ($discount > 0) {
                 echo "<del>{$originalPrice} TL</del> {$discountedPrice} TL";
             } else {
