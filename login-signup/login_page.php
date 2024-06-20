@@ -47,32 +47,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
-
-
-    <h1>LOG IN</h1>
-    <?php if ($is_invalid): ?>
-        <em>Invalid Login</em>
-    <?php endif; ?>
-
-    <form method="post" action="" novalidate>
-        <div>
-            <label for="email">E-mail</label>
-            <input type="text" name="email" placeholder="Enter your email address"
-                value="<?= htmlspecialchars($_POST["email"] ?? "") ?>" required>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="card-header">
+                <h1>Log In</h1>
+            </div>
+            <?php if ($is_invalid): ?>
+                <em>Invalid Login</em>
+            <?php endif; ?>
+            <form method="post" action="" novalidate>
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="text" name="email" placeholder="Enter your email address"
+                        value="<?= htmlspecialchars($_POST["email"] ?? "") ?>" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Enter password" required>
+                </div>
+                <div class="actions">
+                    <button type="submit" name="submit">Log In</button>
+                    <a href="signup_page.php">Not a member?</a>
+                </div>
+            </form>
         </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Enter password" required>
-        </div>
-        <div>
-            <button name="submit">Log In</button>
-            <a href="signup_page.php">You are not a member?</a>
-        </div>
-    </form>
+    </div>
 </body>
 
 </html>

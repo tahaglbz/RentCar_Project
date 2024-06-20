@@ -31,9 +31,9 @@ if (isset($_GET['logout'])) {
         <nav>
             <ul class="menu">
                 <li class="marka"><a href="index.php"><img src="image/car.png" alt="car Icon"></a></li>
-                <li><a href="#about">hakkımızda</a></li>
-                <li><a href="service.php">kiralama</a></li>
-                <li><a href="#contact">bize ulaşın</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="service.php">Rental</a></li>
+                <li><a href="#contact">Contact</a></li>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <img src="image/user.png" alt="">
