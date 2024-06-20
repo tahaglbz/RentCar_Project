@@ -30,7 +30,7 @@ $userId = $_SESSION['user_id'];
             $carId = $_GET['carId'];
             $discount = !empty($_GET['discount']) ? floatval($_GET['discount']) : 0;
 
-            // Define additional prices based on the oil type
+           
             $oilPrices = [
                 'benzin' => 100,
                 'dizel' => 80,
@@ -47,7 +47,6 @@ $userId = $_SESSION['user_id'];
                     $originalPrice = $car['price'];
                     $oilType = $car['oil'];
 
-                    // Normalize oil type to ensure correct matching
                     $oilType = strtolower(trim($oilType));
                     $oilPrice = isset($oilPrices[$oilType]) ? $oilPrices[$oilType] : 0;
 
@@ -57,7 +56,7 @@ $userId = $_SESSION['user_id'];
                     echo "<p><strong>Kilometre:</strong> " . htmlspecialchars($car['mileage']) . "</p>";
                     echo "<p><strong>Üretim Yılı:</strong> " . htmlspecialchars($car['producitonage']) . "</p>";
 
-                    // Display original price and discounted price
+                
                     if ($discount > 0) {
                         $discountedPrice = $originalPrice - ($originalPrice * $discount);
                         echo "<p><strong>Fiyat:</strong> <del>{$originalPrice} TL</del> {$discountedPrice} TL</p>";
@@ -66,7 +65,6 @@ $userId = $_SESSION['user_id'];
                         echo "<p><strong>Fiyat:</strong> {$originalPrice} TL</p>";
                     }
 
-                    // Form for selecting rental days and calculating price
                     echo "<form method='post' action='buy.php?carId={$carId}&discount={$discount}'>";
                     echo "<label for='rentalDays'>Kaç gün kiralayacaksınız?</label>";
                     echo "<input type='number' name='rentalDays' id='rentalDays' min='1' required>";
@@ -90,7 +88,7 @@ $userId = $_SESSION['user_id'];
                         echo "<p><strong>İndirim Uygulanmış Toplam Günlük Fiyat:</strong> {$discountedPrice} TL ({$rentalDays} gün için)</p>";
                         echo "<p><strong>Son Fiyat:</strong> {$finalPrice} TL</p>";
 
-                        // Form for confirming purchase
+                    
                         echo "<form method='post' action='confirm.php'>";
                         echo "<input type='hidden' name='carId' value='{$carId}'>";
                         echo "<input type='hidden' name='discount' value='{$discount}'>";

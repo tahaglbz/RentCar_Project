@@ -1,15 +1,13 @@
 <?php
-// Oturumu başlat
 
-// Eğer "logout" parametresi alınırsa oturumu sonlandır
+
+
 if (isset($_GET['logout'])) {
-    // Oturumu sonlandır (tüm oturum değişkenlerini temizler)
+
     session_unset();
 
-    // Oturumu yok eder (sunucudaki oturum dosyasını siler)
     session_destroy();
 
-    // Kullanıcıyı "index.php" sayfasına yönlendirme
     header("Location: index.php");
     exit;
 }
@@ -31,9 +29,9 @@ if (isset($_GET['logout'])) {
         <nav>
             <ul class="menu">
                 <li class="marka"><a href="index.php"><img src="image/car.png" alt="car Icon"></a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="about.php">About</a></li>
                 <li><a href="service.php">Rental</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="contact.php">Contact</a></li>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <img src="image/user.png" alt="">

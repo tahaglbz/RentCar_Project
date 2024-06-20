@@ -41,9 +41,9 @@ $current_page = basename(__FILE__);
 
 
                 if ($result) {
-                    // Check if there are rows returned
+                
                     if ($result->num_rows > 0) {
-                        // Fetch and display each row
+                       
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>
                                     <td>{$row['cuponId']}</td>
@@ -59,7 +59,7 @@ $current_page = basename(__FILE__);
                         echo "<tr><td colspan='8'>No cupons found</td></tr>";
                     }
                 } else {
-                    // Display error message if query fails
+                    
                     echo "<tr><td colspan='8'>Error executing query: " . $mysqli->error . "</td></tr>";
                 }
                 ?>

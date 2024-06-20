@@ -25,12 +25,15 @@
     </div>
 
 <script src="js/index.js"></script>
-
-    <div class="about-us">
+  <div class="about-us">
         <h2>İstediğin Arabayı Kirala!</h2>
+    
         <p>Araba kiralama hizmetimize hoş geldiniz! Şehir içi sürüş için kompakt bir araba veya aile tatili için bir SUV arıyorsanız, ihtiyaçlarınızı karşılayacak geniş bir araç yelpazesi sunuyoruz. Kolay rezervasyon sürecimiz ve esnek kiralama seçeneklerimizle yola çıkmayı basit hale getiriyoruz. Bir sonraki yolculuğunuzda bize güvenin!</p>
+        <button ><a href="service.php" > Kiralama </a></button>
     </div>
     
+  
+   
 </body>
 
 </html>
