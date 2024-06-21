@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cuponId'])) {
     $discountRate = $_POST['discountRate'];
 
     $stmt = $mysqli->prepare("UPDATE cupons SET cuponCode = ?, discountRate = ? WHERE cuponId = ?");
-    $stmt->bind_param("isi", $cuponCode, $discountRate, $cuponId);
+    $stmt->bind_param("ssi", $cuponCode, $discountRate, $cuponId);
 
     if ($stmt->execute()) {
         echo "Cupon updated successfully!";
