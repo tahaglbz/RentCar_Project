@@ -36,7 +36,7 @@ if (isset($_GET['logout'])) {
                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <img src="image/user.png" alt="">
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu bg-black">
                         <li><a class="dropdown-item" href="profile_page.php">Profile</a></li>
                         <li><a class="dropdown-item" href="login-signup/login_page.php">Log In</a></li>
                         <li><a class="dropdown-item" href="login-signup/signup_page.php">Sign Up</a></li>
