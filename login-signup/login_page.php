@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $user = $result->fetch_assoc();
             if ($user["id"] == 9999 && $user["email"] == 'ahmetgokalppatan@gmail.com') {
                 session_start();
-                header("Location:/RentCar_Project/admin/dashboard.php");
+                header("Location: ../admin/dashboard.php");
                 exit;
             }
             if ($user) {
