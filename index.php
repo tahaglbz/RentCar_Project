@@ -24,7 +24,7 @@
         </div>
     </div>
 
-<script src="js/index.js"></script>
+<script src="index.js"></script>
   <div class="about-us">
         <h2>İstediğin Arabayı Kirala!</h2>
     
