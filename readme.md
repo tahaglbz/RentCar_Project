@@ -1,4 +1,6 @@
 Our site allows you to rent a daily car easily with its user-friendly interface.
+![Uploading image.png…]()
+
 ![image](https://github.com/tahaglbz/RentCar_Project/assets/134064381/b7f09c06-1cd6-4d03-8ce5-c0508370e35a)
 
 ![image](https://github.com/tahaglbz/RentCar_Project/assets/134064381/0e1d43f3-a405-40f5-b139-29be277451c9)
