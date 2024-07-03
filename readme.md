@@ -6,7 +6,6 @@ Our site allows you to rent a daily car easily with its user-friendly interface.
 You can get discounts with coupons defined by us
 ![image](https://github.com/tahaglbz/RentCar_Project/assets/134064381/e2955516-9efb-4bf1-a127-9e4ee90c30f3)
 
-![image](https://github.com/tahaglbz/RentCar_Project/assets/134064381/b88ec12b-b6ad-48e5-a881-5d18c4454245)
 ![image](https://github.com/tahaglbz/RentCar_Project/assets/134064381/c4bfd048-5a29-4e95-ac97-70f76ae6b3d3)
 ![image](https://github.com/tahaglbz/RentCar_Project/assets/134064381/2dcd276e-55ec-4674-b237-27f950a85ce4)
 
